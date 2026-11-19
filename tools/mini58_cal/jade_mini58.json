@@ -1,0 +1,60 @@
+{
+  "_about": "Hardware description for mini58_cal.py. Keys starting with _ are ignored.",
+  "_columns": "Columns for SG0..SG5 in order. Jade .BIN files are read directly (time, gains from the file); CSV needs these names.",
+  "time_column": "time_s",
+  "time_scale": 1.0,
+  "sample_rate_hz": null,
+  "gage_columns": [
+    "CH1",
+    "CH2",
+    "CH3",
+    "CH4",
+    "CH5",
+    "CH6"
+  ],
+  "csv_delimiter": ",",
+  "_ref": "Optional: channel that measures the shared Vexc/2 reference against AGND (e.g. CH6). Each gage channel then reads (g - ref) and the script adds the measured ref back. Leave null if not logged.",
+  "ref_column": null,
+  "ref_pga_gain": 1,
+  "_exc": "Optional but recommended: channel logging the bridge excitation through a divider. Vexc = exc_ratio x V at the ADC. Every gage sample is scaled by exc_nominal / Vexc (ratiometric).",
+  "exc_column": null,
+  "exc_pga_gain": 1,
+  "exc_ratio": 3.0,
+  "exc_nominal": 2.5,
+  "_units": "counts = signed ADS131M08 code, counts_u24 = raw 24-bit word, or V / mV / uV if Jade already converts. pga_gain per channel: start at 1, raise after quicklook/rangecheck (see procedure).",
+  "units": "counts",
+  "pga_gain": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "vref": 1.2,
+  "_front_end": "V at sensor = ratio x V at ADC pins. 1 for the bare transducer wired straight to Jade.",
+  "front_end_ratio": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "_sign": "+1 if the gage wire is on AINxP, -1 if it is on AINxN (current wiring: CH1 P, CH2 N, CH3 P, CH4 N, CH5 P, CH6 N).",
+  "gage_sign": [
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1
+  ],
+  "adc_limit_fraction": 0.95,
+  "_g": "Local gravity, Montreal / Sherbrooke area ~9.806-9.807 m/s2. The 0.01 % difference does not matter here.",
+  "g": 9.8066,
+  "_calibration": "Label on the sensor: SI-700-30, SI-1400-60 or SI-2800-120. Used only to express errors in % FS. null if unknown.",
+  "calibration": "SI-700-30",
+  "trim_start_s": 3.0,
+  "trim_end_s": 1.0
+}

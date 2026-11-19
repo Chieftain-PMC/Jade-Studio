@@ -42,6 +42,7 @@ from PySide6.QtWidgets import (
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jade  # noqa: E402
+import jade_ft  # noqa: E402
 
 try:
     import serial.tools.list_ports as list_ports
@@ -572,6 +573,7 @@ class MainWindow(QMainWindow):
         self.record_dir = str(Path.home() / "Documents" / "Jade")
         self.last_port = ""
         self._geometry = None
+        self.ft_settings: dict = {}
         self.load_settings()
 
         self.log_sig.connect(self._log_device)
@@ -681,6 +683,14 @@ class MainWindow(QMainWindow):
         dock.setWidget(sc)
         self.addDockWidget(Qt.RightDockWidgetArea, dock)
         self.readout_dock = dock
+
+        # right: force / torque (6-gage F/T sensor)
+        self.ft_panel = jade_ft.FTPanel(self, self.ft_settings)
+        dock = QDockWidget("Force / Torque", self)
+        dock.setObjectName("force_torque")
+        dock.setWidget(self.ft_panel)
+        self.addDockWidget(Qt.RightDockWidgetArea, dock)
+        self.ft_dock = dock
 
         # bottom: log
         self.log_view = QPlainTextEdit()
@@ -1909,6 +1919,8 @@ class MainWindow(QMainWindow):
             if y.size:
                 self.tare[c] = float(y.mean())
         self.refresh_readout_names()
+        if ch is None and hasattr(self, "ft_panel"):
+            self.ft_panel.tare(quiet=True)
         self.log("tare " + ", ".join(f"{self.chan[c].name}={fmt(self.tare[c])} {self.chan[c].unit_label()}" for c in chans))
 
     def clear_tare(self):
@@ -2368,6 +2380,7 @@ class MainWindow(QMainWindow):
             "avg": self.avg,
             "record_dir": self.record_dir,
             "last_port": self.last_port,
+            "ft": self.ft_panel.to_dict() if hasattr(self, "ft_panel") else self.ft_settings,
         }
 
     def apply_settings_dict(self, d: dict, ui: bool):
@@ -2382,6 +2395,9 @@ class MainWindow(QMainWindow):
         self.avg = d.get("avg", self.avg)
         self.record_dir = d.get("record_dir", self.record_dir)
         self.last_port = d.get("last_port", self.last_port)
+        self.ft_settings = d.get("ft", self.ft_settings) or {}
+        if ui and hasattr(self, "ft_panel"):
+            self.ft_panel.from_dict(self.ft_settings)
         if ui:
             for ch in range(NCH):
                 self.w_name[ch].setText(self.chan[ch].name)

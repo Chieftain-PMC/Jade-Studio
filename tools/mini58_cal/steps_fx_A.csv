@@ -1,0 +1,36 @@
+# Series A: +X pointing down (positive Fx). 3 cycles, 20 s per hold, one continuous log.
+# Edit mass_kg to the measured weights (keep the up/down pattern) and z_mm to the measured hook distance.
+# z_mm = distance from the origin to the hanging line along +Z. x_mm = y_mm = 0 if the hook is centred.
+# Use: python mini58_cal.py segment fx_A.csv --plan steps_fx_A.csv -o steps_A.csv --plot
+step,series,file,t_start,t_end,mass_kg,dir,x_mm,y_mm,z_mm,note
+A00,A,,,,0,+x,0,0,40,tare with hanger on; +X pointing down (positive Fx)
+A01,A,,,,2,+x,0,0,40,
+A02,A,,,,4,+x,0,0,40,
+A03,A,,,,6,+x,0,0,40,
+A04,A,,,,8,+x,0,0,40,
+A05,A,,,,10,+x,0,0,40,
+A06,A,,,,8,+x,0,0,40,
+A07,A,,,,6,+x,0,0,40,
+A08,A,,,,4,+x,0,0,40,
+A09,A,,,,2,+x,0,0,40,
+A10,A,,,,0,+x,0,0,40,
+A11,A,,,,2,+x,0,0,40,
+A12,A,,,,4,+x,0,0,40,
+A13,A,,,,6,+x,0,0,40,
+A14,A,,,,8,+x,0,0,40,
+A15,A,,,,10,+x,0,0,40,
+A16,A,,,,8,+x,0,0,40,
+A17,A,,,,6,+x,0,0,40,
+A18,A,,,,4,+x,0,0,40,
+A19,A,,,,2,+x,0,0,40,
+A20,A,,,,0,+x,0,0,40,
+A21,A,,,,2,+x,0,0,40,
+A22,A,,,,4,+x,0,0,40,
+A23,A,,,,6,+x,0,0,40,
+A24,A,,,,8,+x,0,0,40,
+A25,A,,,,10,+x,0,0,40,
+A26,A,,,,8,+x,0,0,40,
+A27,A,,,,6,+x,0,0,40,
+A28,A,,,,4,+x,0,0,40,
+A29,A,,,,2,+x,0,0,40,
+A30,A,,,,0,+x,0,0,40,

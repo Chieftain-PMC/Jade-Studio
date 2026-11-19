@@ -1,0 +1,26 @@
+# Series B: sensor turned 180 deg about Z, +X pointing up (negative Fx). 2 cycles, 20 s per hold, one continuous log.
+# Edit mass_kg to the measured weights (keep the up/down pattern) and z_mm to the measured hook distance.
+# z_mm = distance from the origin to the hanging line along +Z. x_mm = y_mm = 0 if the hook is centred.
+# Use: python mini58_cal.py segment fx_B.csv --plan steps_fx_B.csv -o steps_B.csv --plot
+step,series,file,t_start,t_end,mass_kg,dir,x_mm,y_mm,z_mm,note
+B00,B,,,,0,-x,0,0,40,"tare with hanger on; sensor turned 180 deg about Z, +X pointing up (negative Fx)"
+B01,B,,,,2,-x,0,0,40,
+B02,B,,,,4,-x,0,0,40,
+B03,B,,,,6,-x,0,0,40,
+B04,B,,,,8,-x,0,0,40,
+B05,B,,,,10,-x,0,0,40,
+B06,B,,,,8,-x,0,0,40,
+B07,B,,,,6,-x,0,0,40,
+B08,B,,,,4,-x,0,0,40,
+B09,B,,,,2,-x,0,0,40,
+B10,B,,,,0,-x,0,0,40,
+B11,B,,,,2,-x,0,0,40,
+B12,B,,,,4,-x,0,0,40,
+B13,B,,,,6,-x,0,0,40,
+B14,B,,,,8,-x,0,0,40,
+B15,B,,,,10,-x,0,0,40,
+B16,B,,,,8,-x,0,0,40,
+B17,B,,,,6,-x,0,0,40,
+B18,B,,,,4,-x,0,0,40,
+B19,B,,,,2,-x,0,0,40,
+B20,B,,,,0,-x,0,0,40,
